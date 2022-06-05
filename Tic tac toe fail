@@ -1,0 +1,66 @@
+package tictactoe;
+import java.util.*;
+
+class Main {
+    public static Scanner scanner = new Scanner(System.in);
+    public static String stage;
+    public static String result;
+
+
+
+
+    public static void main(String[] args) {
+        System.out.println("Enter cells: ");
+          stage = scanner.nextLine();
+        // write your code here
+        int index = 0;
+
+        System.out.println("---------");
+        for(int i=1;i<=3;i++){
+            System.out.print("| ");
+            for(int j=1;j<=3;j++){
+                System.out.print(stage.charAt(index++)+" ");
+            }
+            System.out.println("|");
+        }
+        System.out.println("---------");
+
+        System.out.println(verify());
+
+
+
+    }
+
+    public static  String verify() {
+
+         for(int  index = 0 ; index < stage.length() -1; index++) {
+
+             if(stage.charAt(index+1)==stage.charAt(index++) && stage.charAt(index)==stage.charAt(index+1)) {
+                result = stage.charAt(index) + " Wins";
+
+
+            }// else if (stage.charAt(index) == stage.charAt((index + 2)%9) && stage.charAt((index + 2)) == stage.charAt((index + 4))) {
+               // result = stage.charAt(index) + " Wins";}
+
+
+             else if (result == "") {
+                while (Character.compare(stage.charAt(index), stage.charAt((index++))) == -1) {
+                    int xs = stage.charAt(index);
+                    int os = stage.charAt(index++);
+
+                    if (xs + os == 9)
+                        result = "Draw";
+
+                }
+
+
+            } else
+                result = "Impossible";
+
+
+             index--;
+        }
+
+        return result;
+    }
+}
